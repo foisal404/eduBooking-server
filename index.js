@@ -32,8 +32,14 @@ app.get('/', (req, res) => {
       // Send a ping to confirm a successful connection
       // collections
       const collegesCollection = client.db("eduBooking").collection("Colleges");
+      const galleryCollection = client.db("eduBooking").collection("gallery");
 
       //APIs
+      //Gallery API
+      app.get('/gallery',async(req,res)=>{
+        const cursor =await galleryCollection.find().toArray();
+        res.send(cursor)
+      })
       //colleges APi
       app.get('/college',async(req,res)=>{
       const search =req.query.search;

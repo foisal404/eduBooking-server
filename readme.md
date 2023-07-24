@@ -1,1 +1,2 @@
-[Vercel](https://myedubooking.web.app/)
+[Live](https://myedubooking.web.app/)
+[Vercel](https://edu-booking-server.vercel.app/)

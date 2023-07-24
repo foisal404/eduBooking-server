@@ -1,1 +1,1 @@
-(Vercel)[https://myedubooking.web.app/]
+[Vercel](https://myedubooking.web.app/)

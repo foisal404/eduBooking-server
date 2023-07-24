@@ -31,18 +31,31 @@ app.get('/', (req, res) => {
       await client.connect();
       // Send a ping to confirm a successful connection
       // collections
-      const colleges = client.db("eduBooking").collection("Colleges");
+      const collegesCollection = client.db("eduBooking").collection("Colleges");
 
       //APIs
       //colleges APi
+      app.get('/college',async(req,res)=>{
+      const search =req.query.search;
+      // console.log(search);
+      if(search){
+        const query={college_name: {$regex: search, $options:"i"}}
+      const cursor =await collegesCollection.findOne(query);
+      res.send(cursor)
+      }
+      else{
+      res.send([])
+      }
+      
+    })
       app.get('/colleges/:id',async(req,res)=>{
         const id=req.params.id;
         const query = { _id: new ObjectId(id) };
-        const cursor =await colleges.findOne(query)
+        const cursor =await collegesCollection.findOne(query)
         res.send(cursor)
       })
       app.get('/colleges',async(req,res)=>{
-        const cursor =await colleges.find().toArray();
+        const cursor =await collegesCollection.find().toArray();
         res.send(cursor)
       })
 

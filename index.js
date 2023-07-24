@@ -6,7 +6,14 @@ require('dotenv').config()
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 //midlleware
-app.use(cors())
+// app.use(cors())
+const corsOptions ={
+  origin:'*',
+  credentials:true,
+  optionSuccessStatus:200,
+  }
+  app.use(cors(corsOptions))
+
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -28,7 +35,7 @@ app.get('/', (req, res) => {
   async function run() {
     try {
       // Connect the client to the server	(optional starting in v4.7)
-      await client.connect();
+      // await client.connect();
       // Send a ping to confirm a successful connection
       // collections
       const collegesCollection = client.db("eduBooking").collection("Colleges");
